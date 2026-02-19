@@ -21,4 +21,4 @@ jobs:
       - name: Run Claude Code
         uses: anthropics/claude-code-action@v1
         with:
-          kids_app_dev: ${{ secrets.kids_app_dev }}
+          kids_app_dev: ${{ secrets.ANTHROPIC_API_KEY }}
