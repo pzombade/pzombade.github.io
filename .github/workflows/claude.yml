@@ -1,0 +1,24 @@
+name: Claude Issue Bot
+on:
+  issue_comment:
+    types: [created]
+  issues:
+    types: [opened]
+
+jobs:
+  claude_fix:
+    if: contains(github.event.comment.body, '@claude') || contains(github.event.issue.body, '@claude')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Run Claude Code
+        uses: anthropics/claude-code-action@v1
+        with:
+          kids_app_dev: ${{ secrets.kids_app_dev }}
