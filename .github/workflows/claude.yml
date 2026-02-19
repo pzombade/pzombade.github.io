@@ -5,6 +5,12 @@ on:
   issues:
     types: [opened]
 
+permissions:
+      contents: write       # Allows Claude to create/edit your code files
+      pull-requests: write  # Allows Claude to open PRs with fixes
+      issues: write         # Allows Claude to reply to your comments
+      id-token: write      # THE FIX: Allows the OIDC handshake with Anthropic
+
 jobs:
   claude_fix:
     if: contains(github.event.comment.body, '@claude') || contains(github.event.issue.body, '@claude')
